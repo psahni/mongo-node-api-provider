@@ -1,19 +1,28 @@
-const express = require('express');
-const cors = require('cors');
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+
 const app = express();
 const port = 9000;
-const bodyParser = require('body-parser');
+
+//--------------------------------------------------------------------------
 
 app.use(bodyParser.json());
-
 app.use(bodyParser.urlencoded({ extended: true }));
-
 app.use(cors());
+
+//--------------------------------------------------------------------------
+
+
+// web3.setProvider(ULIFrameProvider.createPicker(web3.currentProvider));
+
+//--------------------------------------------------------------------------
 
 const mongoClient = require('mongodb').MongoClient;
 const connectionAddr = 'mongodb+srv://admin:admin@cluster0-stxeq.mongodb.net/test?retryWrites=true&w=majority';
 let dbConnection;
 
+//--------------------------------------------------------------------------
 
 const connectToDb = () => {
     console.log('connectToDb()');
@@ -52,5 +61,13 @@ app.post('/profiles', function(req, res) {
     console.log('Request to create profile:-', req.body);
     profiles.insertOne(req.body).then(result => {
         res.end(JSON.stringify(req.body))
-    }).catch(error => console.error(error))
+    }).catch(error => console.error(error));
 });
+
+ app.post('/login', function(req, res) {
+   const loginCollection = dbConnection.collection('login_information');
+   console.log('=============> req.body.netID ', req.body.netID);
+   loginCollection.insertOne({ netID: req.body.netID }).then(result => {
+     res.end(JSON.stringify({ message: 'Logged In Successfylly!', status: 200 }));
+   }).catch(error => console.error(error));
+ });
