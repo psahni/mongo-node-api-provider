@@ -2,12 +2,13 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import * as filestack from 'filestack-js';
-import { MongoClient, ObjectId } from 'mongodb';
+import * as mongodb from 'mongodb';
 import { FILE_STACK_API_KEY, DB_CONNECTION_ADDRESS } from './src/constants.js';
 
 const formidable = require('formidable');
 const app = express();
 const port = 9000;
+const { MongoClient, ObjectID } = mongodb;
 
 //--------------------------------------------------------------------------
 
@@ -79,7 +80,7 @@ app.post('/profiles', function(req, res) {
 app.get('/profiles/:id', function(req, res) {
   console.log('Get()');
   const profiles = dbConnection.collection('profiles');
-  profiles.findOne({ "_id": ObjectId(req.params.id) }).then((result) => {
+  profiles.findOne({ "_id": ObjectID(req.params.id) }).then((result) => {
     console.log(result);
     res.send(JSON.stringify(result));
   });
