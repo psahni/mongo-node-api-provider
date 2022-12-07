@@ -16,9 +16,9 @@
   "license": "ISC",
   "dependencies": {
     "@unilogin/provider": "^0.5.21",
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.20.1",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "express-formidable": "^1.2.0",
     "filestack-js": "^3.15.0",
     "install": "^0.13.0",
