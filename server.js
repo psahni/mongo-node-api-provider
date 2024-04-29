@@ -2,14 +2,13 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import * as filestack from 'filestack-js';
-import * as mongodb from 'mongodb';
+import mongodb from 'mongodb';
 import { FILE_STACK_API_KEY, DB_CONNECTION_ADDRESS } from './src/constants.js';
 
-const formidable = require('formidable');
+import * as formidable from 'formidable';
 const app = express();
 const port = 9000;
 const { MongoClient, ObjectID } = mongodb;
-
 //--------------------------------------------------------------------------
 
 app.use(bodyParser.json());
