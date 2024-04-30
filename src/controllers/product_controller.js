@@ -24,8 +24,22 @@ const createProduct = async (req, res) => {
       }
 }
 
+// PUT /v1/api/update_quantity
+const updateQuantity = async (req, res) => {
+  console.log("id = ", req.params.product_id)
+  const product = await Product.findById(req.params.product_id)
+  if (product != null) {
+    product.quantity = req.body.quantity
+    product.save()
+    return res.status(200).json({message: "Product has been updated successfully."})
+  }
+
+  res.status(500).json({message: "Product not found"});
+}
+
 export {
     getProducts,
-    createProduct
+    createProduct,
+    updateQuantity
 }
 
