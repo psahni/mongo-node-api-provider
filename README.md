@@ -12,3 +12,8 @@ npm install
 
 * Go to http://localhost:9000/
 
+## On local machine
+
+### Start mongo db
+
+* mongosh

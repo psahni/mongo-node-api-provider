@@ -7,8 +7,20 @@ const getProducts = async (req, res) => {
     res.status(200).json(products);
 }
 
-// POST /v1/api/products
+const getProduct = async (req, res) => {
+  const product = await Product.findById(req.params.id);
+  if (product) {
+    return res.status(201).json({
+      product
+    })
+  }
 
+  res.status(404).json({
+    message: "Product not found"
+  })
+}
+
+// POST /v1/api/products
 const createProduct = async (req, res) => {
     // const {name, description, in_stock } = req.body
     const newProduct = new Product(req.body);
@@ -39,6 +51,7 @@ const updateQuantity = async (req, res) => {
 
 export {
     getProducts,
+    getProduct,
     createProduct,
     updateQuantity
 }

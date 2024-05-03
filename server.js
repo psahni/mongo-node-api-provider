@@ -37,4 +37,5 @@ app.get('/', function(req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
+// ## ROUTES
 app.use('/v1/api/products', productRoutes)
